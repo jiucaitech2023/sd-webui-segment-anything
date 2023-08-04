@@ -247,7 +247,7 @@ def dino_predict(input_image, dino_model_name, text_prompt, box_threshold):
     boxes_filt, install_success = dino_predict_internal(input_image, dino_model_name, text_prompt, box_threshold)
     boxes_filt = boxes_filt.numpy()
     boxes_choice = [str(i) for i in range(boxes_filt.shape[0])]
-    return Image.fromarray(show_boxes(image_np, boxes_filt.astype(int), show_index=True)), gr.update(choices=boxes_choice, value=boxes_choice), gr.update(visible=False) if install_success else gr.update(visible=True, value=f"GroundingDINO installment failed. Your process automatically fall back to local groundingdino. See your terminal for more detail and {dino_install_issue_text}")
+    return Image.fromarray(show_boxes(image_np, boxes_filt.astype(int), show_index=True)), gr.update(choices=boxes_choice, value=boxes_choice), gr.update(visible=False), len(boxes_choice) if install_success else gr.update(visible=True, value=f"GroundingDINO installment failed. Your process automatically fall back to local groundingdino. See your terminal for more detail and {dino_install_issue_text}")
 
 
 def dino_batch_process(
