@@ -103,10 +103,14 @@ def sam_api(_: gr.Blocks, app: FastAPI):
             dino_msg = dino_msg["value"]
         else:
             dino_msg = "Done"
+        box_num = 0
+        if "value" in _:
+            box_num = len(_["value"])
         print(f"SAM API /sam/dino-predict finished with message: {dino_msg}")
         return {
             "msg": dino_msg,
             "image_with_box": encode_to_base64(dino_output_img) if dino_output_img is not None else None,
+            "box_num": "box_num"
         }
 
     class DilateMaskRequest(BaseModel):
