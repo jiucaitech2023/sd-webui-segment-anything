@@ -110,7 +110,7 @@ def sam_api(_: gr.Blocks, app: FastAPI):
         return {
             "msg": dino_msg,
             "image_with_box": encode_to_base64(dino_output_img) if dino_output_img is not None else None,
-            "box_num": "box_num"
+            "box_num": box_num
         }
 
     class DilateMaskRequest(BaseModel):
